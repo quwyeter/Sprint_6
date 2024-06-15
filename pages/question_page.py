@@ -12,10 +12,9 @@ class QuestionPage(BasePage):
                            (Locators.CANCEL_ORDER_QUE, data.ANSWER_7), (Locators.MKAD_QUE, data.ANSWER_8)]
 
     @allure.step('Найти вопрос и открыть ответ')
-    def open_answer(self, que):
-        element = self.find_element_by_locator_with_wait(que)
-        self.driver.execute_script('arguments[0].scrollIntoView();', element)
-        self.click_to_element(que)
+    def open_answer(self, locator):
+        self.scroll_to_element(locator)
+        self.click_to_element(locator)
 
     @allure.step('Найти открытый ответ')
     def find_opened_answer(self):

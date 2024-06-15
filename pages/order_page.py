@@ -9,6 +9,7 @@ class OrderPage(BasePage):
         super().__init__(driver)
         self.window_text = None
 
+    @allure.step('Принять куки')
     def get_cookie(self):
         self.click_to_element(Locators.GET_COOKIE_BUTTON)
 
@@ -72,7 +73,6 @@ class OrderPage(BasePage):
     def choose_color_black(self):
         self.click_to_element(Locators.CHECKBOX_COLOR_BLACK)
 
-
     @allure.step('Клик на кнопку "Да"')
     def click_yes_button(self):
         self.click_to_element(Locators.YES_BUTTON)
@@ -82,6 +82,7 @@ class OrderPage(BasePage):
         window_text = self.get_text_from_element(Locators.PLACE_ORDER_WINDOW)
         assert 'Заказ оформлен' in window_text, 'Не появилось всплывающее окно с сообщением об успешном создании заказа'
 
+    @allure.step('Заказ по кнопке в хедере страницы')
     def place_order_using_button_in_header(self, name, surname, address, phone, date):
         self.get_cookie()
         self.click_order_button_in_header()
@@ -98,6 +99,7 @@ class OrderPage(BasePage):
         self.click_yes_button()
         self.check_confirm_order()
 
+    @allure.step('Заказ по кнопке внизу страницы')
     def place_order_using_button_on_page(self, name, surname, address, phone, date):
         self.get_cookie()
         self.click_order_button_on_page()
@@ -113,4 +115,3 @@ class OrderPage(BasePage):
         self.click_order_button_on_page()
         self.click_yes_button()
         self.check_confirm_order()
-
